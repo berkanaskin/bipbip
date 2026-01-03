@@ -19,7 +19,7 @@ export class Fox extends Character {
         // Scale and rotate the model appropriately
         if (this.model) {
             this.model.scale.set(1.5, 1.5, 1.5);
-            this.model.rotation.y = Math.PI; // Face forward (towards positive Z)
+            this.model.rotation.y = 0; // Face forward (positive Z)
         }
 
         // Start with run animation

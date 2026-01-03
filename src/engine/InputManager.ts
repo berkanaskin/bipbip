@@ -6,7 +6,6 @@ export interface InputState {
 }
 
 export class InputManager {
-    private canvas: HTMLCanvasElement;
     private inputState: InputState = {
         left: false,
         right: false,
@@ -24,25 +23,24 @@ export class InputManager {
     private readonly SWIPE_THRESHOLD = 30;
     private readonly SWIPE_TIME_THRESHOLD = 300;
 
-    constructor(canvas: HTMLCanvasElement) {
-        this.canvas = canvas;
+    constructor(_canvas: HTMLCanvasElement) {
         this.setupEventListeners();
     }
 
     private setupEventListeners(): void {
-        // Touch events for mobile
-        this.canvas.addEventListener('touchstart', this.onTouchStart, { passive: false });
-        this.canvas.addEventListener('touchmove', this.onTouchMove, { passive: false });
-        this.canvas.addEventListener('touchend', this.onTouchEnd, { passive: false });
+        // Touch events for mobile - bind to document to work through overlays
+        document.addEventListener('touchstart', this.onTouchStart, { passive: false });
+        document.addEventListener('touchmove', this.onTouchMove, { passive: false });
+        document.addEventListener('touchend', this.onTouchEnd, { passive: false });
 
         // Keyboard events for desktop
         window.addEventListener('keydown', this.onKeyDown);
         window.addEventListener('keyup', this.onKeyUp);
 
-        // Mouse events for desktop testing
-        this.canvas.addEventListener('mousedown', this.onMouseDown);
-        this.canvas.addEventListener('mouseup', this.onMouseUp);
-        this.canvas.addEventListener('mousemove', this.onMouseMove);
+        // Mouse events for desktop testing - bind to document
+        document.addEventListener('mousedown', this.onMouseDown);
+        document.addEventListener('mouseup', this.onMouseUp);
+        document.addEventListener('mousemove', this.onMouseMove);
     }
 
     private onTouchStart = (e: TouchEvent): void => {
@@ -172,13 +170,13 @@ export class InputManager {
     }
 
     public dispose(): void {
-        this.canvas.removeEventListener('touchstart', this.onTouchStart);
-        this.canvas.removeEventListener('touchmove', this.onTouchMove);
-        this.canvas.removeEventListener('touchend', this.onTouchEnd);
+        document.removeEventListener('touchstart', this.onTouchStart);
+        document.removeEventListener('touchmove', this.onTouchMove);
+        document.removeEventListener('touchend', this.onTouchEnd);
         window.removeEventListener('keydown', this.onKeyDown);
         window.removeEventListener('keyup', this.onKeyUp);
-        this.canvas.removeEventListener('mousedown', this.onMouseDown);
-        this.canvas.removeEventListener('mouseup', this.onMouseUp);
-        this.canvas.removeEventListener('mousemove', this.onMouseMove);
+        document.removeEventListener('mousedown', this.onMouseDown);
+        document.removeEventListener('mouseup', this.onMouseUp);
+        document.removeEventListener('mousemove', this.onMouseMove);
     }
 }

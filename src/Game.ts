@@ -46,6 +46,9 @@ export class Game {
     private minGap: number = 5;
     private maxGap: number = 50;
 
+    // Grace period at game start (in distance traveled)
+    private gracePeriodDistance: number = 50;
+
     constructor(canvas: HTMLCanvasElement, callbacks: GameCallbacks) {
         this.canvas = canvas;
         this.callbacks = callbacks;
@@ -188,6 +191,11 @@ export class Game {
     }
 
     private checkCollisions(): void {
+        // Skip collision check during grace period
+        if (this.distanceTraveled < this.gracePeriodDistance) {
+            return;
+        }
+
         const foxBounds = this.fox.getBounds();
 
         // Check obstacle collisions
