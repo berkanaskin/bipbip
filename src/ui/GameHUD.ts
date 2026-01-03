@@ -1,88 +1,142 @@
-import { HUDData } from './UIManager';
+export interface HUDData {
+  score: number;
+  coins: number;
+  distance: number;
+  gap: number;
+}
 
 export interface GameHUDCallbacks {
-    onPause: () => void;
+  onPause: () => void;
 }
 
 export class GameHUD {
-    private container: HTMLElement;
-    private element: HTMLElement;
-    private callbacks: GameHUDCallbacks;
+  private container: HTMLElement;
+  private element: HTMLElement;
+  private callbacks: GameHUDCallbacks;
 
-    private scoreElement!: HTMLElement;
-    private coinsElement!: HTMLElement;
-    private gapElement!: HTMLElement;
-    private pauseOverlay: HTMLElement | null = null;
+  // Element references for updates
+  private scoreEl: HTMLElement | null = null;
+  private coinsEl: HTMLElement | null = null;
+  private gapBarEl: HTMLElement | null = null;
+  private pauseOverlay: HTMLElement | null = null;
 
-    constructor(container: HTMLElement, callbacks: GameHUDCallbacks) {
-        this.container = container;
-        this.callbacks = callbacks;
-        this.element = this.createElement();
-        this.container.appendChild(this.element);
-    }
+  constructor(container: HTMLElement, callbacks: GameHUDCallbacks) {
+    this.container = container;
+    this.callbacks = callbacks;
+    this.element = this.createElement();
+    this.container.appendChild(this.element);
+  }
 
-    private createElement(): HTMLElement {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'game-hud';
-        wrapper.innerHTML = `
-      <div class="hud-top">
-        <div class="hud-left">
-          <div class="score-display">
-            <span class="score-label">MESAFE</span>
-            <span class="score-value" id="hud-score">0</span>
-            <span class="score-unit">m</span>
+  private createElement(): HTMLElement {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'game-hud';
+    wrapper.innerHTML = `
+      <div class="hud-container">
+        <!-- Top bar -->
+        <div class="hud-top">
+          <!-- Score -->
+          <div class="hud-score-badge">
+            <span class="hud-badge-icon">⭐</span>
+            <span class="hud-score-value" id="hud-score">0</span>
           </div>
-        </div>
-        
-        <div class="hud-center">
-          <div class="gap-indicator">
-            <span class="gap-icon">🦊</span>
-            <div class="gap-bar">
-              <div class="gap-fill" id="hud-gap"></div>
+          
+          <!-- Right side: Coins + Pause -->
+          <div class="hud-right">
+            <div class="hud-coins-badge">
+              <span class="hud-badge-icon">💰</span>
+              <span class="hud-coins-value" id="hud-coins">0</span>
             </div>
-            <span class="gap-icon">🐦</span>
+            <button class="hud-pause-btn" id="hud-pause">
+              ⏸
+            </button>
           </div>
         </div>
         
-        <div class="hud-right">
-          <div class="coins-display">
-            <span class="coin-icon">🪙</span>
-            <span class="coin-value" id="hud-coins">0</span>
+        <!-- Gap bar -->
+        <div class="hud-gap-container">
+          <div class="hud-gap-icon hud-fox-icon">🦊</div>
+          <div class="hud-gap-bar">
+            <div class="hud-gap-fill" id="hud-gap-fill"></div>
           </div>
-          <button class="pause-btn" id="pause-btn">⏸️</button>
+          <div class="hud-gap-icon hud-bird-icon">🐦</div>
         </div>
       </div>
       
-      <div class="hud-bottom">
-        <div class="power-up-slots">
-          <div class="power-slot empty"></div>
-          <div class="power-slot empty"></div>
-          <div class="power-slot empty"></div>
+      <!-- Pause overlay -->
+      <div class="hud-pause-overlay" id="hud-pause-overlay">
+        <div class="hud-pause-content">
+          <h2 class="hud-pause-title">DURAKLATILDI</h2>
+          <button class="hud-resume-btn" id="hud-resume">
+            ▶ DEVAM ET
+          </button>
         </div>
       </div>
     `;
 
-        this.addStyles();
+    this.addStyles();
 
-        // Cache elements
-        this.scoreElement = wrapper.querySelector('#hud-score') as HTMLElement;
-        this.coinsElement = wrapper.querySelector('#hud-coins') as HTMLElement;
-        this.gapElement = wrapper.querySelector('#hud-gap') as HTMLElement;
+    // Get element references
+    this.scoreEl = wrapper.querySelector('#hud-score');
+    this.coinsEl = wrapper.querySelector('#hud-coins');
+    this.gapBarEl = wrapper.querySelector('#hud-gap-fill');
+    this.pauseOverlay = wrapper.querySelector('#hud-pause-overlay');
 
-        // Event listeners
-        wrapper.querySelector('#pause-btn')?.addEventListener('click', () => {
-            this.callbacks.onPause();
-        });
+    // Event listeners
+    wrapper.querySelector('#hud-pause')?.addEventListener('click', () => {
+      this.showPauseOverlay();
+      this.callbacks.onPause();
+    });
 
-        return wrapper;
+    wrapper.querySelector('#hud-resume')?.addEventListener('click', () => {
+      this.hidePauseOverlay();
+    });
+
+    return wrapper;
+  }
+
+  public update(data: HUDData): void {
+    if (this.scoreEl) {
+      this.scoreEl.textContent = data.score.toLocaleString();
     }
+    if (this.coinsEl) {
+      this.coinsEl.textContent = data.coins.toString();
+    }
+    if (this.gapBarEl) {
+      // Gap percentage: 0 = caught, 50 = max distance
+      const gapPercent = Math.min(100, Math.max(0, (data.gap / 50) * 100));
+      this.gapBarEl.style.width = `${gapPercent}%`;
+    }
+  }
 
-    private addStyles(): void {
-        if (document.getElementById('game-hud-styles')) return;
+  public showPauseOverlay(): void {
+    if (this.pauseOverlay) {
+      this.pauseOverlay.style.display = 'flex';
+    }
+  }
 
-        const style = document.createElement('style');
-        style.id = 'game-hud-styles';
-        style.textContent = `
+  public hidePauseOverlay(): void {
+    if (this.pauseOverlay) {
+      this.pauseOverlay.style.display = 'none';
+    }
+  }
+
+  public show(): void {
+    this.element.style.display = 'block';
+    this.hidePauseOverlay();
+  }
+
+  public hide(): void {
+    this.element.style.display = 'none';
+  }
+
+  private addStyles(): void {
+    if (document.getElementById('game-hud-styles')) return;
+
+    const style = document.createElement('style');
+    style.id = 'game-hud-styles';
+    style.textContent = `
+      @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
       .game-hud {
         position: absolute;
         top: 0;
@@ -90,234 +144,212 @@ export class GameHUD {
         width: 100%;
         height: 100%;
         pointer-events: none;
-        padding: env(safe-area-inset-top, 10px) env(safe-area-inset-right, 10px) env(safe-area-inset-bottom, 10px) env(safe-area-inset-left, 10px);
+        z-index: 100;
+        font-family: 'Fredoka', 'Outfit', sans-serif;
       }
-      
-      .game-hud > * {
-        pointer-events: auto;
+
+      .hud-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1rem;
+        padding-top: 2rem;
+        max-width: 480px;
+        margin: 0 auto;
       }
-      
+
+      /* Top bar */
       .hud-top {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        padding: 1rem;
-        gap: 1rem;
+        pointer-events: auto;
       }
-      
-      .hud-left, .hud-right {
+
+      .hud-right {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+      }
+
+      /* Score badge */
+      .hud-score-badge {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-      }
-      
-      .hud-center {
-        flex: 1;
-        max-width: 200px;
-      }
-      
-      .score-display {
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(10px);
+        background: #facc15;
+        border-bottom: 4px solid #ca8a04;
+        border-radius: 1rem;
         padding: 0.5rem 1rem;
-        border-radius: 25px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        transform: rotate(-2deg);
+      }
+
+      .hud-score-value {
+        color: #78350f;
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: 0.025em;
+      }
+
+      /* Coins badge */
+      .hud-coins-badge {
         display: flex;
-        align-items: baseline;
-        gap: 0.25rem;
+        align-items: center;
+        gap: 0.5rem;
+        background: #4ade80;
+        border-bottom: 4px solid #16a34a;
+        border-radius: 1rem;
+        padding: 0.5rem 1rem;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        transform: rotate(2deg);
       }
-      
-      .score-label {
-        font-size: 0.6rem;
-        color: rgba(255, 255, 255, 0.6);
-        margin-right: 0.25rem;
+
+      .hud-coins-value {
+        color: #14532d;
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: 0.025em;
       }
-      
-      .score-value {
+
+      .hud-badge-icon {
         font-size: 1.5rem;
-        font-weight: 700;
+        filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.3));
+      }
+
+      /* Pause button */
+      .hud-pause-btn {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,0.2);
+        border: 2px solid rgba(255,255,255,0.4);
+        border-radius: 1rem;
+        font-size: 1.25rem;
         color: white;
-      }
-      
-      .score-unit {
-        font-size: 0.8rem;
-        color: rgba(255, 255, 255, 0.6);
-      }
-      
-      .gap-indicator {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(10px);
-        padding: 0.5rem;
-        border-radius: 20px;
-      }
-      
-      .gap-icon {
-        font-size: 1.2rem;
-      }
-      
-      .gap-bar {
-        flex: 1;
-        height: 8px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 4px;
-        overflow: hidden;
-        min-width: 80px;
-      }
-      
-      .gap-fill {
-        height: 100%;
-        background: linear-gradient(90deg, #ff6b6b, #feca57);
-        border-radius: 4px;
-        transition: width 0.2s ease;
-        width: 50%;
-      }
-      
-      .coins-display {
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(10px);
-        padding: 0.5rem 1rem;
-        border-radius: 25px;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-      
-      .coin-icon {
-        font-size: 1.2rem;
-      }
-      
-      .coin-value {
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: #ffd700;
-      }
-      
-      .pause-btn {
-        width: 44px;
-        height: 44px;
-        border: none;
-        border-radius: 50%;
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(10px);
-        font-size: 1.2rem;
         cursor: pointer;
-        transition: transform 0.2s;
+        backdrop-filter: blur(8px);
+        transition: all 0.2s;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
       }
-      
-      .pause-btn:hover {
-        transform: scale(1.1);
+
+      .hud-pause-btn:hover {
+        background: rgba(255,255,255,0.3);
       }
-      
-      .hud-bottom {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 1rem;
+
+      .hud-pause-btn:active {
+        transform: scale(0.95);
+      }
+
+      /* Gap bar */
+      .hud-gap-container {
         display: flex;
-        justify-content: center;
-      }
-      
-      .power-up-slots {
-        display: flex;
+        align-items: center;
         gap: 0.5rem;
-      }
-      
-      .power-slot {
-        width: 50px;
-        height: 50px;
-        border-radius: 12px;
-        background: rgba(0, 0, 0, 0.3);
-        border: 2px dashed rgba(255, 255, 255, 0.2);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-      }
-      
-      .power-slot.active {
-        background: linear-gradient(135deg, #48dbfb, #0984e3);
-        border: 2px solid white;
-        animation: pulse-power 1s ease-in-out infinite;
-      }
-      
-      @keyframes pulse-power {
-        0%, 100% { box-shadow: 0 0 10px rgba(72, 219, 251, 0.5); }
-        50% { box-shadow: 0 0 20px rgba(72, 219, 251, 0.8); }
-      }
-      
-      .pause-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
+        max-width: 360px;
+        margin: 0 auto;
         width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        z-index: 300;
       }
-      
-      .pause-title {
+
+      .hud-gap-icon {
+        font-size: 1.5rem;
+        padding: 0.25rem;
+        background: currentColor;
+        border: 2px solid white;
+        border-radius: 9999px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      }
+
+      .hud-fox-icon { background: #f97316; }
+      .hud-bird-icon { background: #3b82f6; }
+
+      .hud-gap-bar {
+        flex: 1;
+        height: 16px;
+        background: rgba(0,0,0,0.4);
+        border-radius: 9999px;
+        border: 2px solid rgba(255,255,255,0.2);
+        overflow: hidden;
+        backdrop-filter: blur(4px);
+      }
+
+      .hud-gap-fill {
+        height: 100%;
+        width: 65%;
+        background: linear-gradient(to right, #f97316, #facc15);
+        border-radius: 9999px;
+        transition: width 0.3s ease;
+        box-shadow: 0 0 10px rgba(249,115,22,0.5);
+      }
+
+      .hud-gap-fill::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 50%;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+        border-radius: 9999px 9999px 0 0;
+      }
+
+      /* Pause overlay */
+      .hud-pause-overlay {
+        position: absolute;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0,0,0,0.7);
+        backdrop-filter: blur(4px);
+        z-index: 150;
+        pointer-events: auto;
+      }
+
+      .hud-pause-content {
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .hud-pause-title {
         font-size: 3rem;
-        font-weight: 900;
+        font-weight: 700;
         color: white;
+        text-shadow: 4px 4px 0 #000;
         margin-bottom: 2rem;
       }
-      
-      .pause-buttons {
-        display: flex;
-        gap: 1rem;
+
+      .hud-resume-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        height: 64px;
+        padding: 0 2rem;
+        background: linear-gradient(to bottom, #4ade80, #16a34a);
+        border: none;
+        border-bottom: 6px solid #14532d;
+        border-radius: 1rem;
+        color: white;
+        font-family: inherit;
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 4px 4px 0 rgba(0,0,0,1);
+        transition: all 0.1s;
+      }
+
+      .hud-resume-btn:hover {
+        filter: brightness(1.1);
+      }
+
+      .hud-resume-btn:active {
+        transform: translateY(4px);
+        box-shadow: none;
+        border-bottom-width: 0;
       }
     `;
-        document.head.appendChild(style);
-    }
-
-    public update(data: HUDData): void {
-        this.scoreElement.textContent = Math.floor(data.distance).toString();
-        this.coinsElement.textContent = data.coins.toString();
-
-        // Gap indicator (closer = more filled, reversed logic for chase)
-        const gapPercent = Math.max(0, Math.min(100, ((50 - data.gap) / 45) * 100));
-        this.gapElement.style.width = `${gapPercent}%`;
-    }
-
-    public showPauseOverlay(): void {
-        if (this.pauseOverlay) return;
-
-        this.pauseOverlay = document.createElement('div');
-        this.pauseOverlay.className = 'pause-overlay';
-        this.pauseOverlay.innerHTML = `
-      <h2 class="pause-title">⏸️ DURDURULDU</h2>
-      <div class="pause-buttons">
-        <button class="menu-btn play-btn" id="resume-btn">DEVAM</button>
-      </div>
-    `;
-
-        this.element.appendChild(this.pauseOverlay);
-
-        this.pauseOverlay.querySelector('#resume-btn')?.addEventListener('click', () => {
-            this.hidePauseOverlay();
-        });
-    }
-
-    public hidePauseOverlay(): void {
-        if (this.pauseOverlay) {
-            this.pauseOverlay.remove();
-            this.pauseOverlay = null;
-        }
-    }
-
-    public show(): void {
-        this.element.style.display = 'block';
-    }
-
-    public hide(): void {
-        this.element.style.display = 'none';
-        this.hidePauseOverlay();
-    }
+    document.head.appendChild(style);
+  }
 }

@@ -5,9 +5,9 @@ export class SceneManager {
     private camera: THREE.PerspectiveCamera;
     private renderer: THREE.WebGLRenderer;
 
-    // Camera settings for chase view
-    private cameraOffset = new THREE.Vector3(0, 8, -12);
-    private cameraLookOffset = new THREE.Vector3(0, 2, 15);
+    // Camera settings for chase view - closer to character
+    private cameraOffset = new THREE.Vector3(0, 4, -6);
+    private cameraLookOffset = new THREE.Vector3(0, 1.5, 10);
 
     constructor(canvas: HTMLCanvasElement) {
         // Create scene
@@ -15,11 +15,11 @@ export class SceneManager {
         this.scene.background = new THREE.Color(0x87CEEB); // Sky blue
         this.scene.fog = new THREE.Fog(0x87CEEB, 50, 150);
 
-        // Create camera
+        // Create camera - narrower FOV for closer feel
         const aspect = window.innerWidth / window.innerHeight;
-        this.camera = new THREE.PerspectiveCamera(60, aspect, 0.1, 200);
-        this.camera.position.set(0, 8, -12);
-        this.camera.lookAt(0, 2, 20);
+        this.camera = new THREE.PerspectiveCamera(50, aspect, 0.1, 200);
+        this.camera.position.set(0, 4, -6);
+        this.camera.lookAt(0, 1.5, 10);
 
         // Create renderer
         this.renderer = new THREE.WebGLRenderer({

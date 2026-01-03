@@ -26,8 +26,8 @@ export class BipBip extends Character {
 
         // Scale and position
         if (this.model) {
-            this.model.scale.set(1, 1, 1);
-            this.model.rotation.y = 0; // Face forward
+            this.model.scale.set(1.5, 1.5, 1.5);
+            this.model.rotation.y = Math.PI; // Face forward
         }
 
         this.playAnimation('run');

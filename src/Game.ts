@@ -138,10 +138,22 @@ export class Game {
 
         // Process input
         const input = this.inputManager.getInput();
-        if (input.left) this.fox.moveLeft();
-        if (input.right) this.fox.moveRight();
-        if (input.jump) this.fox.jump();
-        if (input.slide) this.fox.slide();
+        if (input.left) {
+            console.log('Input: LEFT');
+            this.fox.moveLeft();
+        }
+        if (input.right) {
+            console.log('Input: RIGHT');
+            this.fox.moveRight();
+        }
+        if (input.jump) {
+            console.log('Input: JUMP');
+            this.fox.jump();
+        }
+        if (input.slide) {
+            console.log('Input: SLIDE');
+            this.fox.slide();
+        }
 
         // Update track
         this.track.update(delta, this.currentSpeed);
