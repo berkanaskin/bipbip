@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Bip Bip - Yakaladın!</title>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700;800&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FF9800",
+                        "primary-dark": "#E65100",
+                        "accent": "#FFD600",
+                        "background-light": "#FFF3E0",
+                        "background-dark": "#3E2723",
+                        "surface-card": "#4E342E",
+                        "surface-border": "#795548",
+                        "victory-red": "#D50000",
+                        "cartoon-blue": "#29B6F6",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    boxShadow: {
+                        'cartoon': '4px 4px 0 0 rgba(0,0,0,1)',
+                        'cartoon-sm': '2px 2px 0 0 rgba(0,0,0,1)',
+                        'cartoon-xl': '8px 8px 0 0 rgba(0,0,0,1)',
+                        'glow': '0 0 40px rgba(255, 152, 0, 0.6)',
+                        '3d-text': '0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15)',
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'stamp': 'stamp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s forwards',
+                        'pop': 'pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                        'shimmer': 'shimmer 2.5s infinite',
+                        'wiggle-slow': 'wiggle 3s ease-in-out infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                        'bounce-cartoon': 'bounce-cartoon 2s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(-2deg)' },
+                            '50%': { transform: 'translateY(-12px) rotate(2deg)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-5deg)' },
+                            '50%': { transform: 'rotate(5deg)' },
+                        },
+                        stamp: {
+                            '0%': { transform: 'scale(2.5) rotate(-15deg)', opacity: '0' },
+                            '70%': { transform: 'scale(0.9) rotate(-15deg)', opacity: '1' },
+                            '100%': { transform: 'scale(1) rotate(-15deg)', opacity: '1' },
+                        },
+                        pop: {
+                            '0%': { transform: 'scale(0.5)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        shimmer: {
+                            '0%': { left: '-100%' },
+                            '100%': { left: '200%' }
+                        },
+                        'bounce-cartoon': {
+                            '0%, 100%': { transform: 'translateY(-5%)' },
+                            '50%': { transform: 'translateY(0)' }
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .cartoon-text {
+            text-shadow: 4px 4px 0px #000;
+            -webkit-text-stroke: 2px black;
+            paint-order: stroke fill;
+        }
+        .cartoon-text-sm {
+            text-shadow: 2px 2px 0px #000;
+        }
+        .game-btn:active {
+            transform: translateY(4px) !important;
+            box-shadow: 0 0 0 0 rgba(0,0,0,1) !important;
+            border-bottom-width: 0px !important;
+            margin-bottom: 4px;
+        }
+        .bg-pattern {
+            background-color: #3E2723;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(255, 152, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(#5D4037 15%, transparent 16%), 
+                radial-gradient(#5D4037 15%, transparent 16%);
+            background-size: 100% 100%, 30px 30px, 30px 30px;
+            background-position: 0 0, 0 0, 15px 15px;
+        }
+        .sunburst {
+            background: repeating-conic-gradient(
+                from 0deg,
+                rgba(255, 255, 255, 0.03) 0deg 15deg,
+                transparent 15deg 30deg
+            );
+            mask-image: radial-gradient(circle, black 30%, transparent 70%);
+        }
+        body {
+            min-height: 100dvh;
+            overscroll-behavior: none;
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display antialiased text-white overflow-hidden select-none">
+<div class="relative flex h-full min-h-[100dvh] w-full flex-col overflow-y-auto">
+<div class="absolute inset-0 bg-pattern fixed z-0"></div>
+<div class="absolute inset-0 sunburst animate-spin-slow fixed z-0 pointer-events-none scale-150"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/30 to-background-dark fixed z-0 pointer-events-none"></div>
+<div class="absolute top-20 left-10 text-accent animate-bounce-cartoon delay-700 z-0 opacity-80">
+<span class="material-symbols-outlined text-5xl drop-shadow-md">star</span>
+</div>
+<div class="absolute top-40 right-6 text-primary animate-pulse z-0 opacity-60">
+<span class="material-symbols-outlined text-4xl drop-shadow-md">celebration</span>
+</div>
+<div class="absolute bottom-1/3 left-4 text-cartoon-blue animate-float z-0 opacity-50">
+<span class="material-symbols-outlined text-4xl drop-shadow-md">bolt</span>
+</div>
+<div class="relative z-10 flex-1 flex flex-col items-center w-full max-w-md mx-auto px-5 py-6">
+<div class="text-center w-full mt-2 relative z-20">
+<h1 class="text-[4.5rem] font-black italic tracking-tighter leading-none mb-4 text-accent cartoon-text animate-float drop-shadow-glow rotate-[-2deg]">
+                    YAKALADIN!
+                </h1>
+<div class="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-yellow-600 to-orange-700 border-2 border-yellow-300 shadow-cartoon-sm animate-pop" style="animation-delay: 0.3s; opacity: 0; animation-fill-mode: forwards;">
+<span class="material-symbols-outlined text-white text-xl animate-pulse">emoji_events</span>
+<p class="text-white font-black text-sm tracking-widest uppercase shadow-black drop-shadow-md">Yeni Rekor!</p>
+</div>
+</div>
+<div class="w-full relative aspect-square max-w-[300px] my-6 group mx-auto perspective-1000 z-10">
+<div class="absolute -top-5 left-1/2 -translate-x-1/2 w-32 h-10 bg-white/20 rotate-1 z-30 backdrop-blur-sm shadow-sm border border-white/10"></div>
+<div class="absolute -right-8 -top-8 z-40 animate-wiggle-slow" style="animation-delay: 0.5s;">
+<div class="relative bg-white border-[3px] border-black px-5 py-3 rounded-[40%] rounded-bl-none shadow-cartoon transform rotate-12">
+<span class="font-black text-black text-2xl italic leading-none block tracking-tight">BİP BİP!</span>
+<div class="absolute -bottom-2 -left-2 w-4 h-4 bg-white border-l-[3px] border-b-[3px] border-black rotate-45"></div>
+</div>
+</div>
+<div class="w-full h-full bg-[#fdfbf7] p-3 pb-12 rounded-[6px] shadow-cartoon-xl rotate-2 transition-transform duration-500 hover:rotate-1 hover:scale-105 origin-center border border-gray-300">
+<div class="w-full h-full border-2 border-black/10 relative overflow-hidden bg-gray-200">
+<div class="w-full h-full bg-blue-50 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518331647614-7a1f04cd34cf?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80')] bg-cover bg-center opacity-40"></div>
+<img alt="Caught Bird" class="w-full h-full object-cover z-10 drop-shadow-2xl hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmlzvPI30Sk_Oq98tpLMdcxuSY5NZNuCDWmobMZddoBwi06uTr5Z8RnL7w1JYbcjl0Ak1EypIuT7H-dufjoj7XQ1s6mvlpUS1KZnIe8IK4tJMM3TUSh095Ler42UtMfjtggrQwrpqCSDNhODoVO00d0Jh67-gH-gajK6PI-Ge9KDlL29EamDvrdHbIT3YmqympzrKLV29qEFWOkrIA7Iigw7t2G81-jOZqt97KVgFuhJvnoaqNmp28_CpIEYrSTEmSfOofljvMUA"/>
+</div>
+<div class="absolute bottom-4 right-2 border-[6px] border-victory-red rounded-xl px-3 py-1 rotate-[-15deg] opacity-0 animate-stamp shadow-xl bg-victory-red/10 backdrop-blur-[1px] mix-blend-hard-light z-20">
+<span class="text-victory-red font-black text-3xl uppercase tracking-widest" style="font-family: 'Spline Sans';">YAKALANDI</span>
+</div>
+</div>
+<div class="absolute bottom-3 left-1/2 -translate-x-1/2 w-full text-center">
+<span class="text-gray-700 font-handwriting text-lg font-black font-body tracking-tight rotate-[-1deg] block uppercase opacity-80">Sonunda!</span>
+</div>
+</div>
+</div>
+<div class="w-full grid grid-cols-2 gap-3 mb-6 relative z-10">
+<div class="flex flex-col p-3 bg-surface-card rounded-xl border-b-[6px] border-surface-border shadow-cartoon-sm relative overflow-hidden group hover:translate-y-[-2px] transition-transform">
+<div class="absolute -right-2 -top-2 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">trophy</span>
+</div>
+<div class="flex items-center gap-1.5 mb-1 z-10">
+<span class="material-symbols-outlined text-accent text-xl drop-shadow-sm">trophy</span>
+<span class="text-white/70 text-[11px] font-bold uppercase tracking-wider font-body">Skor</span>
+</div>
+<span class="text-3xl font-black text-white cartoon-text-sm tracking-tight z-10">12,450</span>
+</div>
+<div class="flex flex-col p-3 bg-surface-card rounded-xl border-b-[6px] border-surface-border shadow-cartoon-sm relative overflow-hidden group hover:translate-y-[-2px] transition-transform">
+<div class="absolute -right-2 -top-2 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">monetization_on</span>
+</div>
+<div class="flex items-center gap-1.5 mb-1 z-10">
+<span class="material-symbols-outlined text-yellow-400 text-xl drop-shadow-sm">monetization_on</span>
+<span class="text-white/70 text-[11px] font-bold uppercase tracking-wider font-body">Para</span>
+</div>
+<span class="text-3xl font-black text-white cartoon-text-sm tracking-tight z-10">340</span>
+</div>
+<div class="flex flex-col p-3 bg-surface-card rounded-xl border-b-[6px] border-surface-border shadow-cartoon-sm relative overflow-hidden group hover:translate-y-[-2px] transition-transform">
+<div class="absolute -right-2 -top-2 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">distance</span>
+</div>
+<div class="flex items-center gap-1.5 mb-1 z-10">
+<span class="material-symbols-outlined text-cartoon-blue text-xl drop-shadow-sm">distance</span>
+<span class="text-white/70 text-[11px] font-bold uppercase tracking-wider font-body">Mesafe</span>
+</div>
+<span class="text-3xl font-black text-white cartoon-text-sm tracking-tight z-10">1.2<span class="text-lg">km</span></span>
+</div>
+<div class="flex flex-col p-3 bg-surface-card rounded-xl border-b-[6px] border-surface-border shadow-cartoon-sm relative overflow-hidden group hover:translate-y-[-2px] transition-transform">
+<div class="absolute -right-2 -top-2 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">timer</span>
+</div>
+<div class="flex items-center gap-1.5 mb-1 z-10">
+<span class="material-symbols-outlined text-green-400 text-xl drop-shadow-sm">timer</span>
+<span class="text-white/70 text-[11px] font-bold uppercase tracking-wider font-body">Süre</span>
+</div>
+<span class="text-3xl font-black text-white cartoon-text-sm tracking-tight z-10">04:12</span>
+</div>
+</div>
+<div class="w-full flex flex-col gap-3 mt-auto mb-2 relative z-10">
+<button class="game-btn w-full bg-gradient-to-b from-primary to-primary-dark border-b-[6px] border-[#bf360c] hover:brightness-110 text-white font-black text-2xl h-18 py-4 rounded-2xl shadow-cartoon flex items-center justify-center gap-3 relative overflow-hidden group transition-all">
+<span class="material-symbols-outlined text-4xl group-hover:rotate-180 transition-transform duration-500 drop-shadow-md">replay</span>
+<span class="uppercase tracking-widest cartoon-text-sm drop-shadow-md">Tekrar Oyna</span>
+<div class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute top-0 -left-full w-1/2 h-full bg-white/30 skew-x-[-20deg] animate-shimmer"></div>
+</button>
+<div class="grid grid-cols-2 gap-3">
+<button class="game-btn w-full bg-surface-card hover:bg-[#5D4037] text-white/90 font-bold text-sm h-14 rounded-2xl border-b-[4px] border-surface-border shadow-cartoon-sm flex items-center justify-center gap-2 transition-all">
+<span class="material-symbols-outlined text-white/60">home</span>
+                        Ana Menü
+                    </button>
+<button class="game-btn w-full bg-surface-card hover:bg-[#5D4037] text-white/90 font-bold text-sm h-14 rounded-2xl border-b-[4px] border-surface-border shadow-cartoon-sm flex items-center justify-center gap-2 transition-all">
+<span class="material-symbols-outlined text-white/60">leaderboard</span>
+                        Liderlik Tablosu
+                    </button>
+</div>
+</div>
+<div class="h-4 w-full"></div>
+</div>
+</div>
+
+</body></html>

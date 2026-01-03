@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Karakter Seçimi - Bip Bip</title>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f48c25",
+                        "primary-dark": "#d67615",
+                        "secondary": "#3b82f6", // Blue for the bird/opponent theme
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221910",
+                        "surface-dark": "#2c241b",
+                        "surface-highlight": "#3a3025",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "2.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased min-h-screen flex flex-col overflow-hidden selection:bg-primary selection:text-white">
+<header class="flex items-center justify-between px-6 py-5 z-20 relative">
+<button class="w-10 h-10 rounded-full bg-surface-dark flex items-center justify-center text-white hover:bg-surface-highlight transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-white text-xl font-bold tracking-tight uppercase">Karakterini Seç</h1>
+<div class="flex items-center gap-2 bg-surface-dark pl-3 pr-4 py-1.5 rounded-full border border-white/10">
+<span class="text-xl">💰</span>
+<span class="text-primary font-bold text-sm">1.250</span>
+</div>
+</header>
+<main class="flex-1 flex flex-col relative overflow-y-auto pb-32 no-scrollbar">
+<div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background: radial-gradient(circle at 50% 30%, #f48c25 0%, transparent 60%);"></div>
+<div class="px-6 mb-4 z-10">
+<div class="bg-surface-dark/80 backdrop-blur-md border border-secondary/20 rounded-2xl p-4 flex items-center gap-4 shadow-lg">
+<div class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary shrink-0 ring-2 ring-secondary/10">
+<span class="material-symbols-outlined text-2xl">flutter_dash</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-0.5">
+<span class="text-[10px] font-bold uppercase tracking-wider text-secondary bg-secondary/10 px-2 py-0.5 rounded-md">Sezon Hedefi</span>
+</div>
+<div class="text-white font-bold truncate">Şaşkın Kuş (The Runner)</div>
+<div class="text-xs text-white/50 truncate">Bu karakter sabit bir yapay zekadır.</div>
+</div>
+</div>
+</div>
+<div class="w-full overflow-x-auto snap-x snap-mandatory flex gap-4 px-6 pb-4 pt-2 no-scrollbar z-10">
+<div class="snap-center shrink-0 w-[80vw] max-w-[320px] flex flex-col group cursor-pointer">
+<div class="relative aspect-[3/4] bg-surface-dark rounded-[2.5rem] overflow-hidden border-4 border-primary shadow-[0_0_30px_rgba(244,140,37,0.3)] transition-transform duration-300">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Cartoon coyote character with a determined expression holding a fork and knife, desert background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD9nmoHU1Aews0WgS1DBHsd3zq3eQG6d9hk1DqVdS-A9yXULsr9MBPOKlr83N755fVQwbaVQpS4K4YdhZoYc0h7kceqI06VUbry49S6aXEyPH4NrbVD86jNDaaZY-FeMzKqTIXECxhognyRAzTA3GrVBGKqaEv9z9dFZGPWum5Mem7YhkwqU5Mb4g1ge7hMmmqiNNOeAdyByLgn6UpMIdH2WoZtALiY2mwOxKX4i6rx6HwECoSoH8nIz4EdtTpHnmSSnt3cXKezGg');">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80"></div>
+</div>
+<div class="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                    SEÇİLDİ
+                </div>
+<div class="absolute bottom-0 left-0 right-0 p-6 flex flex-col gap-1">
+<h2 class="text-white text-3xl font-bold leading-tight drop-shadow-lg">Muzur Tilki</h2>
+<p class="text-primary text-sm font-bold uppercase tracking-wide drop-shadow-md">Klasik Avcı</p>
+</div>
+</div>
+</div>
+<div class="snap-center shrink-0 w-[80vw] max-w-[320px] flex flex-col group cursor-pointer opacity-80 scale-95">
+<div class="relative aspect-[3/4] bg-surface-dark rounded-[2.5rem] overflow-hidden border-2 border-white/5">
+<div class="absolute inset-0 bg-cover bg-center grayscale brightness-50" data-alt="Cartoon coyote with a giant red rocket strapped to his back, looking excited" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDkuvUeU6VsiV28AtGsE6iBJZRsl59NP-lp7vSWQCZzTm_3_3x9aOSBSWtTZtUsObjSGbaW_4syJQzF3lAf8BPbir7ozh58UsARNq3Jrs-fQsdMzYjhM6pp4cuGMR2ESgENBUPc_o-L0uM8byRDoSNYmOHeD5Qz8wkmX2zyHBfqPZoCo6IgsQYVBATv9i9dej1yFLRcTxHbD6up9Fn4IOOLqqY_LRx6sU3opXZTo4Kaxm4AIiMmbG5LFuGT2qLFDAalaDboLbaXtg');">
+<div class="absolute inset-0 bg-black/40"></div>
+</div>
+<div class="absolute inset-0 flex flex-col items-center justify-center gap-3">
+<div class="bg-black/40 backdrop-blur-md p-5 rounded-full border border-white/10">
+<span class="material-symbols-outlined text-4xl text-white/80">lock</span>
+</div>
+<div class="bg-surface-dark px-4 py-2 rounded-xl border border-white/10 flex items-center gap-2">
+<span class="text-xl">💰</span>
+<span class="text-white font-bold text-lg">2.500</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-6 flex flex-col gap-1 opacity-50">
+<h2 class="text-white text-2xl font-bold leading-tight">Roketçi Tilki</h2>
+<p class="text-white/60 text-sm font-medium">Hız Tutkunu</p>
+</div>
+</div>
+</div>
+<div class="snap-center shrink-0 w-[80vw] max-w-[320px] flex flex-col group cursor-pointer opacity-80 scale-95">
+<div class="relative aspect-[3/4] bg-surface-dark rounded-[2.5rem] overflow-hidden border-2 border-white/5">
+<div class="absolute inset-0 bg-cover bg-center grayscale brightness-50" data-alt="Cartoon coyote wearing inventor goggles holding a complex blue print" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBhv815xUpl2z7A0mV4eZ3Q3-s0uF7ewUH0sqf8MKnH7xLBj2nEdHEDSuiyn8wvrJrtkboe8X5A2pKTpu4A0vEtYVP73sU3Tqg-XOFSoY564Z-ni4EJycYaMq2X3hACuciyXVzEplHTJNtLErCkd6fPpci1lyJSUmZvihxtUr8WWPTdVImvCwL4KE_xF9Lpk3Mp-bsz3ke_F8KLT4PHwmZnzGguPRvgxsI3_0z4LmED7zfQnuOfzx9rqaB4fCoqEZbXbjbv0FGWng');">
+<div class="absolute inset-0 bg-black/40"></div>
+</div>
+<div class="absolute inset-0 flex flex-col items-center justify-center gap-3">
+<div class="bg-black/40 backdrop-blur-md p-5 rounded-full border border-white/10">
+<span class="material-symbols-outlined text-4xl text-white/80">lock</span>
+</div>
+<div class="bg-surface-dark px-4 py-2 rounded-xl border border-white/10 flex items-center gap-2">
+<span class="text-xl">💰</span>
+<span class="text-white font-bold text-lg">5.000</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-6 flex flex-col gap-1 opacity-50">
+<h2 class="text-white text-2xl font-bold leading-tight">Dahi Mucit</h2>
+<p class="text-white/60 text-sm font-medium">Tuzak Uzmanı</p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-6 flex flex-col gap-5 mt-2 z-10">
+<div class="bg-surface-dark/50 p-4 rounded-2xl border border-white/5 backdrop-blur-sm">
+<p class="text-white/80 text-sm leading-relaxed">
+<span class="text-primary font-bold">Muzur Tilki</span>, kuşları kovalamak için doğuştan yetenekli. Herhangi bir ekstra ekipmanı yok ama en dengeli ve dayanıklı karakter o. Başlangıç için mükemmel.
+            </p>
+</div>
+<div>
+<h3 class="text-white/40 text-xs font-bold tracking-widest uppercase mb-3 px-1">Özel Bonuslar</h3>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-highlight p-3 rounded-xl flex items-center gap-3 border border-white/5">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">directions_run</span>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-bold text-sm">Dengeli Hız</span>
+<span class="text-white/40 text-xs">Yorulmadan koşar</span>
+</div>
+</div>
+<div class="bg-surface-highlight p-3 rounded-xl flex items-center gap-3 border border-white/5">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">shield</span>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-bold text-sm">Dayanıklı</span>
+<span class="text-white/40 text-xs">Engellere karşı</span>
+</div>
+</div>
+<div class="bg-surface-highlight p-3 rounded-xl flex items-center gap-3 border border-white/5 col-span-2">
+<div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 shrink-0">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-bold text-sm">Ücretsiz Başlangıç</span>
+<span class="text-white/40 text-xs">Bu karakter senin!</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="h-24 w-full"></div> 
+</main>
+<div class="fixed bottom-0 left-0 right-0 z-50 bg-background-dark/90 backdrop-blur-xl border-t border-white/5 flex flex-col">
+<div class="px-6 py-4">
+<button class="w-full bg-surface-highlight text-white/50 font-bold text-lg py-3.5 rounded-2xl flex items-center justify-center gap-2 cursor-default border border-white/5">
+<span class="material-symbols-outlined">check_circle</span>
+<span>KULLANIMDA</span>
+</button>
+</div>
+<nav class="flex items-center justify-around pb-6 pt-1 px-2">
+<button class="flex flex-col items-center gap-1 p-2 text-white/40 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="text-[10px] font-medium">Ana Sayfa</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 text-primary">
+<span class="material-symbols-outlined text-2xl fill-1">pets</span>
+<span class="text-[10px] font-bold">Karakterler</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 text-white/40 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">storefront</span>
+<span class="text-[10px] font-medium">Mağaza</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 text-white/40 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">settings</span>
+<span class="text-[10px] font-medium">Ayarlar</span>
+</button>
+</nav>
+</div>
+
+</body></html>

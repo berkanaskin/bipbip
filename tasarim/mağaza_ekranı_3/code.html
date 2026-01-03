@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bip Bip - Mağaza</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FF9F1C", // Vibrant Orange
+                        "primary-dark": "#E08006",
+                        "secondary": "#2EC4B6", // Turquoise/Teal for contrast
+                        "accent": "#FFBF69", // Light Sand
+                        "background-light": "#FFFBF5", // Very light sand
+                        "background-dark": "#1F1A16", // Dark brown/black
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#2A241E",
+                        "surface-dark-highlight": "#383129",
+                        "text-main": "#181411",
+                        "text-secondary": "#9CA3AF"
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "2.5rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'glow': '0 0 20px rgba(255, 159, 28, 0.3)'
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            min-height: 100vh;
+            padding-bottom: 90px;}
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-main dark:text-white antialiased selection:bg-primary selection:text-white">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden">
+<div class="sticky top-0 z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-black/5 dark:border-white/5 transition-colors">
+<div class="flex items-center justify-between px-4 py-3">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold uppercase tracking-wider text-text-main dark:text-white">Mağaza</h1>
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-2xl">help</span>
+</button>
+</div>
+<div class="flex flex-col items-center justify-center pb-4 pt-1">
+<div class="flex items-center gap-2 scale-100 transition-transform hover:scale-105 cursor-pointer">
+<div class="relative">
+<span class="material-symbols-outlined text-[44px] text-yellow-500 fill-1 drop-shadow-sm">monetization_on</span>
+<span class="absolute top-0 right-0 flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span>
+</span>
+</div>
+<span class="text-5xl font-black tracking-tighter text-text-main dark:text-white drop-shadow-sm">2,500</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-2 py-0.5 rounded-full">Bip Bip Altın</span>
+<button class="flex items-center justify-center size-5 rounded-full bg-primary text-white hover:bg-primary-dark transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+</div>
+<div class="px-4 pb-2">
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-2">
+<button class="flex shrink-0 items-center gap-2 rounded-full bg-white dark:bg-surface-dark border border-gray-100 dark:border-white/5 px-5 py-2.5 text-gray-600 dark:text-gray-300 transition-colors hover:bg-gray-50 dark:hover:bg-surface-dark-highlight">
+<span class="material-symbols-outlined text-[20px]">pets</span>
+<span class="text-sm font-bold">Karakterler</span>
+</button>
+<button class="flex shrink-0 items-center gap-2 rounded-full bg-primary px-5 py-2.5 shadow-lg shadow-primary/25 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-white text-[20px]">bolt</span>
+<span class="text-white text-sm font-bold">Güçlendirmeler</span>
+</button>
+<button class="flex shrink-0 items-center gap-2 rounded-full bg-white dark:bg-surface-dark border border-gray-100 dark:border-white/5 px-5 py-2.5 text-gray-600 dark:text-gray-300 transition-colors hover:bg-gray-50 dark:hover:bg-surface-dark-highlight">
+<span class="material-symbols-outlined text-[20px]">palette</span>
+<span class="text-sm font-bold">Özelleştirmeler</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6 px-4 py-6">
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">bolt</span>
+                    Güçlendirmeler
+                </h2>
+<div class="flex gap-2">
+<button class="text-xs bg-black/5 dark:bg-white/10 px-2 py-1 rounded-lg font-bold hover:bg-black/10 transition-colors">Süreli</button>
+<button class="text-xs bg-black/5 dark:bg-white/10 px-2 py-1 rounded-lg font-bold hover:bg-black/10 transition-colors">Tek Seferlik</button>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<div class="group relative bg-white dark:bg-surface-dark rounded-2xl p-4 border border-gray-100 dark:border-white/5 shadow-md hover:shadow-lg transition-all flex flex-row gap-4">
+<div class="relative w-24 shrink-0 aspect-square rounded-xl bg-gradient-to-br from-red-100 to-orange-50 dark:from-red-900/20 dark:to-orange-900/10 overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-5xl text-red-500 group-hover:scale-110 transition-transform duration-300 drop-shadow-md">rocket_launch</span>
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] opacity-30"></div>
+</div>
+<div class="flex flex-col flex-1 justify-between py-1">
+<div>
+<h3 class="font-black text-lg leading-tight text-gray-800 dark:text-gray-100">ACME Roket</h3>
+<div class="flex items-center gap-1 mt-1 text-xs font-bold text-orange-500 bg-orange-100 dark:bg-orange-900/30 w-fit px-2 py-0.5 rounded-md">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span>5 Saniye</span>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-2 leading-relaxed">
+                                Coyote'yi çılgın bir hıza ulaştırır! Engelleri yok sayar ve süper hız kazandırır.
+                            </p>
+</div>
+<div class="mt-3 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-500 text-lg fill-1">monetization_on</span>
+<span class="text-lg font-black tracking-tight">2500</span>
+</div>
+<button class="h-9 px-4 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/20 hover:bg-primary-dark active:scale-95 transition-all flex items-center gap-1">
+                                Satın Al
+                            </button>
+</div>
+</div>
+</div>
+<div class="group relative bg-white dark:bg-surface-dark rounded-2xl p-4 border border-gray-100 dark:border-white/5 shadow-md hover:shadow-lg transition-all flex flex-row gap-4">
+<div class="relative w-24 shrink-0 aspect-square rounded-xl bg-gradient-to-br from-blue-100 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/10 overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-5xl text-blue-500 group-hover:scale-110 transition-transform duration-300 drop-shadow-md">shield</span>
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] opacity-30"></div>
+</div>
+<div class="flex flex-col flex-1 justify-between py-1">
+<div>
+<h3 class="font-black text-lg leading-tight text-gray-800 dark:text-gray-100">Çelik Kalkan</h3>
+<div class="flex items-center gap-1 mt-1 text-xs font-bold text-blue-500 bg-blue-100 dark:bg-blue-900/30 w-fit px-2 py-0.5 rounded-md">
+<span class="material-symbols-outlined text-[14px]">repeat_one</span>
+<span>1 Hak</span>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-2 leading-relaxed">
+                                Bir sonraki çarpışmada seni korur. Kayaya veya kaktüse çarpmaktan korkma!
+                            </p>
+</div>
+<div class="mt-3 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-500 text-lg fill-1">monetization_on</span>
+<span class="text-lg font-black tracking-tight">1200</span>
+</div>
+<button class="h-9 px-4 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/20 hover:bg-primary-dark active:scale-95 transition-all flex items-center gap-1">
+                                Satın Al
+                            </button>
+</div>
+</div>
+</div>
+<div class="group relative bg-white dark:bg-surface-dark rounded-2xl p-4 border border-gray-100 dark:border-white/5 shadow-md hover:shadow-lg transition-all flex flex-row gap-4">
+<div class="relative w-24 shrink-0 aspect-square rounded-xl bg-gradient-to-br from-yellow-100 to-amber-50 dark:from-yellow-900/20 dark:to-amber-900/10 overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-5xl text-amber-500 group-hover:scale-110 transition-transform duration-300 drop-shadow-md">save_alt</span>
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] opacity-30"></div>
+<div class="absolute bottom-1 right-1 flex gap-0.5">
+<div class="w-1.5 h-1.5 rounded-full bg-amber-500"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-amber-500"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-amber-200 dark:bg-amber-800"></div>
+</div>
+</div>
+<div class="flex flex-col flex-1 justify-between py-1">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-black text-lg leading-tight text-gray-800 dark:text-gray-100">Süper Mıknatıs</h3>
+<span class="text-[10px] uppercase font-bold text-gray-400 border border-gray-200 dark:border-gray-700 px-1.5 rounded">Seviye 2</span>
+</div>
+<div class="flex items-center gap-1 mt-1 text-xs font-bold text-amber-600 bg-amber-100 dark:bg-amber-900/30 w-fit px-2 py-0.5 rounded-md">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span>15 Saniye</span>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-2 leading-relaxed">
+                                Etraftaki tüm altınları kendine çeker. Mıknatısın çekim gücünü artırmak için yükselt!
+                            </p>
+</div>
+<div class="mt-3 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-500 text-lg fill-1">monetization_on</span>
+<span class="text-lg font-black tracking-tight">4000</span>
+</div>
+<button class="h-9 px-4 rounded-xl bg-secondary text-white font-bold text-sm shadow-lg shadow-secondary/20 hover:bg-teal-500 active:scale-95 transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">arrow_upward</span>
+                                Yükselt
+                            </button>
+</div>
+</div>
+</div>
+<div class="group relative bg-white dark:bg-surface-dark rounded-2xl p-4 border border-gray-100 dark:border-white/5 shadow-md hover:shadow-lg transition-all flex flex-row gap-4">
+<span class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full shadow-md z-10 rotate-12">YENİ!</span>
+<div class="relative w-24 shrink-0 aspect-square rounded-xl bg-gradient-to-br from-gray-200 to-gray-50 dark:from-gray-800 dark:to-gray-900 overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-5xl text-gray-600 dark:text-gray-400 group-hover:scale-110 transition-transform duration-300 drop-shadow-md">image</span>
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] opacity-30"></div>
+</div>
+<div class="flex flex-col flex-1 justify-between py-1">
+<div>
+<h3 class="font-black text-lg leading-tight text-gray-800 dark:text-gray-100">Sahte Tünel</h3>
+<div class="flex items-center gap-1 mt-1 text-xs font-bold text-purple-500 bg-purple-100 dark:bg-purple-900/30 w-fit px-2 py-0.5 rounded-md">
+<span class="material-symbols-outlined text-[14px]">repeat_one</span>
+<span>Tek Kullanım</span>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-2 leading-relaxed">
+                                Road Runner'ı kandır! Duvara boyanmış bir tünel resmi koyarak onu sersemlet.
+                            </p>
+</div>
+<div class="mt-3 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-500 text-lg fill-1">monetization_on</span>
+<span class="text-lg font-black tracking-tight">800</span>
+</div>
+<button class="h-9 px-4 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/20 hover:bg-primary-dark active:scale-95 transition-all flex items-center gap-1">
+                                Satın Al
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-white/90 dark:bg-surface-dark/95 backdrop-blur-lg border-t border-gray-100 dark:border-white/5 pb-5 pt-2 shadow-[0_-5px_20px_rgba(0,0,0,0.05)]">
+<div class="flex items-center justify-around">
+<button class="group flex flex-col items-center gap-1 p-2 w-16">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-2xl">home</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">Ev</span>
+</button>
+<button class="group flex flex-col items-center gap-1 p-2 w-16 relative">
+<div class="absolute -top-6 bg-primary rounded-full p-3 shadow-lg shadow-primary/30 border-4 border-white dark:border-surface-dark transform transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-white text-2xl">storefront</span>
+</div>
+<span class="text-[10px] font-bold text-primary mt-6">Mağaza</span>
+</button>
+<button class="group flex flex-col items-center gap-1 p-2 w-16">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-2xl">emoji_events</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">Sıralama</span>
+</button>
+<button class="group flex flex-col items-center gap-1 p-2 w-16">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-2xl">settings</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">Ayarlar</span>
+</button>
+</div>
+</nav>
+</div>
+
+</body></html>

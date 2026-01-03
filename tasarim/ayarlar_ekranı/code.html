@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bip Bip - Ayarlar</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&amp;family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f48c25",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221910",
+                        "surface-dark": "#2C241B",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem", 
+                        "lg": "1.5rem", 
+                        "xl": "2rem", 
+                        "2xl": "2.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #54473b;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white font-display overflow-x-hidden">
+<div class="relative flex h-full min-h-screen w-full flex-col pb-24 max-w-md mx-auto shadow-2xl bg-background-light dark:bg-background-dark">
+<!-- Top App Bar -->
+<div class="sticky top-0 z-10 flex items-center bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md p-4 pb-2 justify-between border-b border-[#3a3a3a]/20">
+<div class="text-white flex size-12 shrink-0 items-center justify-center rounded-full active:bg-white/10 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</div>
+<h2 class="text-[#111418] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Ayarlar</h2>
+</div>
+<!-- Content Scroll Area -->
+<div class="flex flex-col gap-6 px-4 pt-6">
+<!-- Section: Audio -->
+<div class="flex flex-col gap-4">
+<h3 class="text-[#111418] dark:text-white tracking-wide text-lg font-bold leading-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">volume_up</span>
+                    Ses Ayarları
+                </h3>
+<div class="bg-surface-dark/5 dark:bg-surface-dark rounded-xl p-5 flex flex-col gap-6 shadow-sm">
+<!-- Music Slider -->
+<div class="flex flex-col gap-3">
+<div class="flex w-full items-center justify-between">
+<p class="text-[#111418] dark:text-white text-base font-medium">Müzik</p>
+<p class="text-primary font-bold text-sm">70%</p>
+</div>
+<div class="relative flex h-8 w-full items-center cursor-pointer group">
+<div class="absolute w-full h-2 bg-[#e0dcd9] dark:bg-[#3E342B] rounded-full overflow-hidden">
+<div class="h-full w-[70%] bg-primary rounded-full"></div>
+</div>
+<div class="absolute left-[70%] -translate-x-1/2 flex items-center justify-center size-6 bg-white rounded-full shadow-md ring-4 ring-primary/20 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-primary text-[14px] font-bold">music_note</span>
+</div>
+</div>
+</div>
+<!-- SFX Slider -->
+<div class="flex flex-col gap-3">
+<div class="flex w-full items-center justify-between">
+<p class="text-[#111418] dark:text-white text-base font-medium">Ses Efektleri</p>
+<p class="text-primary font-bold text-sm">50%</p>
+</div>
+<div class="relative flex h-8 w-full items-center cursor-pointer group">
+<div class="absolute w-full h-2 bg-[#e0dcd9] dark:bg-[#3E342B] rounded-full overflow-hidden">
+<div class="h-full w-[50%] bg-primary rounded-full"></div>
+</div>
+<div class="absolute left-[50%] -translate-x-1/2 flex items-center justify-center size-6 bg-white rounded-full shadow-md ring-4 ring-primary/20 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-primary text-[14px] font-bold">graphic_eq</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Controls -->
+<div class="flex flex-col gap-4">
+<h3 class="text-[#111418] dark:text-white tracking-wide text-lg font-bold leading-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">gamepad</span>
+                    Kontrol Ayarları
+                </h3>
+<div class="bg-surface-dark/5 dark:bg-surface-dark rounded-xl p-5 flex flex-col gap-6 shadow-sm">
+<!-- Sensitivity -->
+<div class="flex flex-col gap-3">
+<div class="flex w-full items-center justify-between">
+<p class="text-[#111418] dark:text-white text-base font-medium">Hassasiyet</p>
+<p class="text-primary font-bold text-sm">Yüksek</p>
+</div>
+<div class="relative flex h-8 w-full items-center cursor-pointer group">
+<div class="absolute w-full h-2 bg-[#e0dcd9] dark:bg-[#3E342B] rounded-full overflow-hidden">
+<div class="h-full w-[85%] bg-primary rounded-full"></div>
+</div>
+<div class="absolute left-[85%] -translate-x-1/2 flex items-center justify-center size-6 bg-white rounded-full shadow-md ring-4 ring-primary/20 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-primary text-[14px] font-bold">bolt</span>
+</div>
+</div>
+</div>
+<!-- Control Type -->
+<div class="flex flex-col gap-3">
+<p class="text-[#111418] dark:text-white text-base font-medium">Kontrol Tipi</p>
+<div class="grid grid-cols-2 gap-3">
+<div class="relative flex flex-col items-center justify-center p-3 rounded-xl bg-primary/20 border-2 border-primary cursor-pointer transition-all">
+<span class="material-symbols-outlined text-primary text-2xl mb-1">joystick</span>
+<span class="text-primary font-bold text-sm">Joystick</span>
+<div class="absolute top-2 right-2 size-2 bg-primary rounded-full"></div>
+</div>
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-white/5 dark:bg-white/5 border-2 border-transparent hover:bg-white/10 dark:hover:bg-white/10 cursor-pointer transition-all text-[#111418]/60 dark:text-white/60">
+<span class="material-symbols-outlined text-2xl mb-1">screen_rotation</span>
+<span class="font-medium text-sm">Eğme (Tilt)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Notifications -->
+<div class="flex flex-col gap-4">
+<h3 class="text-[#111418] dark:text-white tracking-wide text-lg font-bold leading-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">notifications</span>
+                    Bildirimler
+                </h3>
+<div class="bg-surface-dark/5 dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm divide-y divide-[#3a3a3a]/20">
+<div class="flex items-center justify-between p-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">campaign</span>
+</div>
+<p class="text-[#111418] dark:text-white font-medium">Oyun İçi Bildirimler</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-300 dark:bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">redeem</span>
+</div>
+<p class="text-[#111418] dark:text-white font-medium">Günlük Ödüller</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-300 dark:bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Section: Account -->
+<div class="flex flex-col gap-4">
+<h3 class="text-[#111418] dark:text-white tracking-wide text-lg font-bold leading-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person</span>
+                    Hesap Ayarları
+                </h3>
+<div class="bg-surface-dark/5 dark:bg-surface-dark rounded-xl p-5 flex flex-col gap-4 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="relative size-14 overflow-hidden rounded-full ring-2 ring-primary">
+<img alt="Oyun karakteri profili, çizgi film tarzı" class="h-full w-full object-cover" data-alt="Cartoon avatar of a player" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-R4b2nGVEpHmtGMPqI8zRgLAxrXoHbKNWZsO0KsWMmdo1F-MsmB413WNVxcs1QKtL8JgA_FId1HuE6D0eBNsU5S666yk9XgsXcSW408zSoTTkVhiv4yMkmDE4kPVrs7ahrryK6KIcsnx7PNgYx70YO1oK6E9xSIU9XDfhUTVZ94hSHj9HV4Gz1GxxtuotrPLapcfWZRRlXTE4YVmT6hFwkLVfdxNte1BRAB3VgZp48XTNpEx1fu_qTn4cj_zGqkDnxcKOFzd00w"/>
+</div>
+<div class="flex flex-col">
+<h4 class="text-lg font-bold text-[#111418] dark:text-white">Kurnaz Tilki</h4>
+<p class="text-sm text-[#111418]/60 dark:text-white/60">Seviye 24 • Üye</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-2">
+<button class="flex items-center justify-center gap-2 bg-[#111418]/5 dark:bg-white/10 hover:bg-[#111418]/10 dark:hover:bg-white/20 text-[#111418] dark:text-white font-bold py-3 px-4 rounded-xl transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+                            Düzenle
+                        </button>
+<button class="flex items-center justify-center gap-2 bg-[#111418]/5 dark:bg-white/10 hover:bg-red-500/20 text-red-500 font-bold py-3 px-4 rounded-xl transition-colors">
+<span class="material-symbols-outlined text-lg">logout</span>
+                            Çıkış
+                        </button>
+</div>
+</div>
+</div>
+<!-- Section: Support -->
+<div class="flex flex-col gap-4 pb-4">
+<h3 class="text-[#111418] dark:text-white tracking-wide text-lg font-bold leading-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">support_agent</span>
+                    Yardım &amp; Destek
+                </h3>
+<div class="flex flex-col gap-2">
+<button class="w-full text-left bg-surface-dark/5 dark:bg-surface-dark hover:bg-surface-dark/10 dark:hover:bg-white/5 rounded-xl p-4 flex items-center justify-between group transition-all">
+<span class="text-[#111418] dark:text-white font-medium">Sıkça Sorulan Sorular</span>
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition-all">chevron_right</span>
+</button>
+<button class="w-full text-left bg-surface-dark/5 dark:bg-surface-dark hover:bg-surface-dark/10 dark:hover:bg-white/5 rounded-xl p-4 flex items-center justify-between group transition-all">
+<span class="text-[#111418] dark:text-white font-medium">Bize Ulaşın</span>
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition-all">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto z-20">
+<!-- Gradient fade above nav -->
+<div class="h-8 w-full bg-gradient-to-t from-background-light dark:from-background-dark to-transparent"></div>
+<div class="bg-surface-dark/5 dark:bg-surface-dark backdrop-blur-lg border-t border-[#3a3a3a]/20 px-6 py-3 pb-6 flex items-center justify-between shadow-[0_-5px_20px_rgba(0,0,0,0.3)] rounded-t-2xl">
+<div class="flex flex-col items-center gap-1 opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="text-[10px] font-bold tracking-wide">Ana Menü</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-2xl">shopping_bag</span>
+<span class="text-[10px] font-bold tracking-wide">Market</span>
+</div>
+<!-- Active Tab -->
+<div class="flex flex-col items-center gap-1 text-primary cursor-pointer relative">
+<div class="absolute -top-10 bg-primary/20 p-2 rounded-full blur-lg size-12"></div>
+<span class="material-symbols-outlined text-2xl fill-1">settings</span>
+<span class="text-[10px] font-bold tracking-wide">Ayarlar</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-2xl">trophy</span>
+<span class="text-[10px] font-bold tracking-wide">Sıralama</span>
+</div>
+</div>
+</div>
+</div>
+</body></html>
