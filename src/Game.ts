@@ -148,7 +148,8 @@ export class Game {
 
         // Update characters
         this.fox.update(delta, this.currentSpeed);
-        this.bipbip.update(delta, this.currentSpeed, this.gapDistance);
+        this.bipbip.setGapDistance(this.gapDistance);
+        this.bipbip.update(delta, this.currentSpeed);
 
         // Update obstacles
         this.obstacleManager.update(delta, this.currentSpeed, this.distanceTraveled);

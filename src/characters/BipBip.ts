@@ -2,18 +2,15 @@ import * as THREE from 'three';
 import { Character, AnimationName } from './Character';
 
 export class BipBip extends Character {
-    private baseSpeed: number = 1.0;
     private currentSpeedMultiplier: number = 1.0;
     private burstTimer: number = 0;
     private burstDuration: number = 2.0;
 
-    // AI behavior
-    private nextObstacleZ: number = 0;
-    private nextObstacleType: 'jump' | 'slide' | null = null;
-    private nextObstacleLane: number = 0;
-
     // Trap spawning
     private trapCooldown: number = 0;
+
+    // Gap distance for chase mechanics
+    private gapDistance: number = 30;
 
     constructor(scene: THREE.Scene) {
         super(scene);
@@ -58,7 +55,7 @@ export class BipBip extends Character {
         return null;
     }
 
-    public update(delta: number, speed: number, gapDistance: number): void {
+    public update(delta: number, speed: number): void {
         // Update burst timer
         if (this.burstTimer > 0) {
             this.burstTimer -= delta;
@@ -80,14 +77,18 @@ export class BipBip extends Character {
 
         // BipBip maintains gap distance from player
         // When gap is small, BipBip runs faster
-        if (gapDistance < 15) {
+        if (this.gapDistance < 15) {
             this.currentSpeedMultiplier = 1.2;
-        } else if (gapDistance < 10) {
+        } else if (this.gapDistance < 10) {
             this.currentSpeedMultiplier = 1.4;
         }
 
         // Update position based on gap
-        this.position.z = gapDistance; // Z is relative to player
+        this.position.z = this.gapDistance; // Z is relative to player
+    }
+
+    public setGapDistance(gap: number): void {
+        this.gapDistance = gap;
     }
 
     private handleObstacleAvoidance(): void {
@@ -131,11 +132,7 @@ export class BipBip extends Character {
         return this.currentSpeedMultiplier;
     }
 
-    public setObstacleInfo(z: number, type: 'jump' | 'slide', lane: number): void {
-        this.nextObstacleZ = z;
-        this.nextObstacleType = type;
-        this.nextObstacleLane = lane;
-    }
+
 
     public reset(): void {
         super.reset();

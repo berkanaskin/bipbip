@@ -102,7 +102,7 @@ export class UIManager {
     private handlePurchase(itemId: string): void {
         const gameData = this.game.getGameData();
         // Handle purchase logic
-        console.log('Purchase:', itemId);
+        console.log('Purchase:', itemId, gameData.getCoins());
     }
 
     private hideAll(): void {

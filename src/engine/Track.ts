@@ -8,7 +8,6 @@ export class Track {
     private scene: THREE.Scene;
     private segments: THREE.Group[] = [];
     private currentZ: number = 0;
-    private segmentPool: THREE.Group[] = [];
 
     constructor(scene: THREE.Scene) {
         this.scene = scene;
